@@ -11,4 +11,7 @@ private Node[] tabela;
     public int getColisoes() {
         return colisoes;
     }
+private int hash(int chave) {
+        return chave % tamanho;
+    }
  
