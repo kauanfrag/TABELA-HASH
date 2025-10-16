@@ -61,5 +61,15 @@ for (int i = 0; i < tabela.length; i++) {
                 indiceUltimoOcupado = i;
             }
         }
+int mediaGap;
+        if (quantidadeGaps == 0) {
+            mediaGap = 0;
+        } else {
+            mediaGap = somaGaps / quantidadeGaps;
+        }
+        int[] gaps = new int[]{menorGap, maiorGap, mediaGap};
+ 
+        return gaps;
+    }
  
  
