@@ -80,4 +80,20 @@ public int[] tresMaioresListas() {
                 tamanhoLista++;
                 atual = atual.proximo;
             }
+  if (tamanhoLista > maiores[0]) {
+                maiores[2] = maiores[1];
+                maiores[1] = maiores[0];
+                maiores[0] = tamanhoLista;
+            } else if (tamanhoLista > maiores[1]) {
+                maiores[2] = maiores[1];
+                maiores[1] = tamanhoLista;
+            } else if (tamanhoLista > maiores[2]) {
+                maiores[2] = tamanhoLista;
+            }
+        }
+        return maiores;
+    }
+ 
+ 
+}
  
