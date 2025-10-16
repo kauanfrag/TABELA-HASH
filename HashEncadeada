@@ -2,4 +2,13 @@ public class HashEncadeado {
 private Node[] tabela;
     private int tamanho;
     private int colisoes = 0;
+    private int numElementos = 0;
+ public HashEncadeado(int tamanho) {
+        this.tamanho = tamanho;
+        this.tabela = new Node[tamanho];
+    }
+ 
+    public int getColisoes() {
+        return colisoes;
+    }
  
