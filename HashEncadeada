@@ -39,5 +39,11 @@ public Registro buscarEncadeado(int chave) {
         }
         return null;
     }
+ public int[] calcularGaps() {
+        int menorGap = 1000000000;
+        int maiorGap = 0;
+        int somaGaps = 0;
+        int quantidadeGaps = 0;
+        int indiceUltimoOcupado = -1;
 
  
