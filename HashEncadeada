@@ -71,5 +71,13 @@ int mediaGap;
  
         return gaps;
     }
- 
+public int[] tresMaioresListas() {
+        int[] maiores = new int[3]; // vai guardar os 3 maiores tamanhos
+        for (int i = 0; i < tabela.length; i++) {
+            Node atual = tabela[i];
+            int tamanhoLista = 0;
+            while (atual != null) {
+                tamanhoLista++;
+                atual = atual.proximo;
+            }
  
