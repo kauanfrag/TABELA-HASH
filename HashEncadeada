@@ -1,2 +1,5 @@
 public class HashEncadeado {
+private Node[] tabela;
+    private int tamanho;
+    private int colisoes = 0;
  
