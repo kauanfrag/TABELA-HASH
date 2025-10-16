@@ -1,0 +1,108 @@
+public class HashEncadeado {
+    private Node[] tabela;
+    private int tamanho;
+    private int colisoes = 0;
+    private int numElementos = 0;
+
+    public HashEncadeado(int tamanho) {
+        this.tamanho = tamanho;
+        this.tabela = new Node[tamanho];
+    }
+
+    public int getColisoes() {
+        return colisoes;
+    }
+
+    private int hash(int chave) {
+        return chave % tamanho;
+    }
+
+    public void inserirEncadeado(int chave) {
+        int pos = hash(chave);
+        Node novo = new Node(new Registro(chave));
+
+        if (tabela[pos] == null) {
+            tabela[pos] = novo;
+            System.out.println("* Inserido " + chave + " na posição " + pos);
+        } else {
+            novo.proximo = tabela[pos];
+            tabela[pos] = novo;
+            colisoes++;
+            System.out.println("* Inserido " + chave + " na posição " + pos + " (colisão)");
+        }
+        numElementos++;
+    }
+
+    public Registro buscarEncadeado(int chave) {
+        int pos = hash(chave);
+        Node atual = tabela[pos];
+        while (atual != null) {
+            if (atual.registro.chave == chave) {
+                return atual.registro;
+            }
+            atual = atual.proximo;
+        }
+        return null;
+    }
+
+    public int[] calcularGaps() {
+        int menorGap = 1000000000;
+        int maiorGap = 0;
+        int somaGaps = 0;
+        int quantidadeGaps = 0;
+        int indiceUltimoOcupado = -1;
+
+        for (int i = 0; i < tabela.length; i++) {
+            if (tabela[i] != null) {
+                if (indiceUltimoOcupado != -1) {
+                    int gap = i - indiceUltimoOcupado - 1;
+                    if (gap < menorGap) {
+                        menorGap = gap;
+                    }
+                    if (gap > maiorGap) {
+                        maiorGap = gap;
+                    }
+                    somaGaps += gap;
+                    quantidadeGaps++;
+                }
+                indiceUltimoOcupado = i;
+            }
+        }
+
+        int mediaGap;
+        if (quantidadeGaps == 0) {
+            mediaGap = 0;
+        } else {
+            mediaGap = somaGaps / quantidadeGaps;
+        }
+        int[] gaps = new int[]{menorGap, maiorGap, mediaGap};
+
+        return gaps;
+    }
+
+    public int[] tresMaioresListas() {
+        int[] maiores = new int[3]; // vai guardar os 3 maiores tamanhos
+        for (int i = 0; i < tabela.length; i++) {
+            Node atual = tabela[i];
+            int tamanhoLista = 0;
+            while (atual != null) {
+                tamanhoLista++;
+                atual = atual.proximo;
+            }
+
+            if (tamanhoLista > maiores[0]) {
+                maiores[2] = maiores[1];
+                maiores[1] = maiores[0];
+                maiores[0] = tamanhoLista;
+            } else if (tamanhoLista > maiores[1]) {
+                maiores[2] = maiores[1];
+                maiores[1] = tamanhoLista;
+            } else if (tamanhoLista > maiores[2]) {
+                maiores[2] = tamanhoLista;
+            }
+        }
+        return maiores;
+    }
+
+
+}
