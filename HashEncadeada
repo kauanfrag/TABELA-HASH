@@ -17,4 +17,15 @@ private int hash(int chave) {
 public void inserirEncadeado(int chave) {
         int pos = hash(chave);
         Node novo = new Node(new Registro(chave));
+if (tabela[pos] == null) {
+            tabela[pos] = novo;
+            System.out.println("* Inserido " + chave + " na posição " + pos);
+        } else {
+            novo.proximo = tabela[pos];
+            tabela[pos] = novo;
+            colisoes++;
+            System.out.println("* Inserido " + chave + " na posição " + pos + " (colisão)");
+        }
+        numElementos++;
+    }
  
