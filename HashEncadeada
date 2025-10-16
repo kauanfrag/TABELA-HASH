@@ -14,4 +14,7 @@ private Node[] tabela;
 private int hash(int chave) {
         return chave % tamanho;
     }
+public void inserirEncadeado(int chave) {
+        int pos = hash(chave);
+        Node novo = new Node(new Registro(chave));
  
