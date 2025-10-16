@@ -28,4 +28,16 @@ if (tabela[pos] == null) {
         }
         numElementos++;
     }
+public Registro buscarEncadeado(int chave) {
+        int pos = hash(chave);
+        Node atual = tabela[pos];
+        while (atual != null) {
+            if (atual.registro.chave == chave) {
+                return atual.registro;
+            }
+            atual = atual.proximo;
+        }
+        return null;
+    }
+
  
